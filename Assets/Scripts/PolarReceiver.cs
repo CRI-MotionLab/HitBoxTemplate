@@ -4,37 +4,39 @@ using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
+using CRI.HitBoxTemplate.Example;
 
 namespace CRI.HitBoxTemplate.Polar
 {
 	public class PolarReceiver : MonoBehaviour
 	{
 		// read Thread
-		Thread readThread;
+		private Thread readThread;
 		// udpclient object
-		UdpClient client;
+		private UdpClient client;
 		// port number
-		public int port = 2390;
+		public int port = 8088;
 		// List holding received data
 		public List<byte> polarData;
 		// Last value received
 		public byte bpm;
-		// start from unity3d
+
 		void Start()
 		{
 			polarData = new List<byte>();
-			Debug.Log("Initializing UDP Client");
 			// create thread for reading UDP messages
 			readThread = new Thread(new ThreadStart(ReceiveData));
 			readThread.IsBackground = true;
 			readThread.Start();
 		}
+
 		// Unity Application Quit Function
 		void OnApplicationQuit()
 		{
 			stopThread();
 			polarData.Clear();
 		}
+
 		// Stop reading UDP messages
 		private void stopThread()
 		{
@@ -69,7 +71,7 @@ namespace CRI.HitBoxTemplate.Polar
 					// Receive bytes
 					IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
 					byte[] data = client.Receive(ref anyIP);
-
+					DataSaver.Instance.canSave = true;
 					StoreData(data[1]);
 					bpm = data[1];
 				}

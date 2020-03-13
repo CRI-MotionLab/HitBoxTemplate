@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using CRI.HitBoxTemplate.OSC;
+using Valve.VR;
 
-namespace Valve.VR
+namespace CRI.HitBoxTemplate.Example
 {
 	public class Player_Orientation : MonoBehaviour
 	{
