@@ -25,6 +25,9 @@ namespace CRI.HitBoxTemplate.Example
 			_instance = this;
 		}
 
+		public bool _roundStart = false;
+		public bool _roundOver = false;
+
 		public bool canSave = false;
 		private PolarReceiver _polar;
 		private Player_Movement_Follower _pmf;
@@ -35,6 +38,23 @@ namespace CRI.HitBoxTemplate.Example
 			_polar = GameObject.Find("Polar").GetComponent<PolarReceiver>();
 			_pmf = GameObject.Find("PlayerTracker").GetComponent<Player_Movement_Follower>();
 			_mb = GameObject.Find("MovingBar").GetComponent<MovingBar>();
+		}
+
+		public void Separator(string s)
+		{
+			switch(s)
+			{
+				case ("Round Start"):
+					DataStorage.AppendSeparatorToReport();
+					DataStorage.AppendToReport(new string[1] { "Round " + _mb.round.ToString() + " Start" } );
+					DataStorage.AppendSeparatorToReport();
+					break;
+				case ("Round Over"):
+					DataStorage.AppendSeparatorToReport();
+					DataStorage.AppendToReport(new string[1] { "Round " + _mb.round.ToString() + " Over" } );
+					DataStorage.AppendSeparatorToReport();
+					break;
+			}
 		}
 
 		// Update is called once per frame
@@ -63,6 +83,16 @@ namespace CRI.HitBoxTemplate.Example
 							);
 				}
 				canSave = false;
+			}
+			if (_roundStart)
+			{
+				Separator("Round Start");
+				_roundStart = false;
+			}
+			if (_roundOver)
+			{
+				Separator("Round Over");
+				_roundOver = false;
 			}
 		}
 	}

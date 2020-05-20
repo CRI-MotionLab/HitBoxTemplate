@@ -31,6 +31,16 @@ namespace CRI.HitBoxTemplate.Example
 			}
 		}
 
+		public static void AppendSeparatorToReport()
+		{
+			VerifyFile();
+			using (StreamWriter sw = File.AppendText(GetFilePath()))
+			{
+				string finalString = "";
+				sw.WriteLine(finalString);
+			}
+		}
+
 		public static void CreateReport()
 		{
 			VerifyDirectory();

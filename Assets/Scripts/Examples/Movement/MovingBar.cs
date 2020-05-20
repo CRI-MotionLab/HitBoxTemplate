@@ -23,6 +23,7 @@ namespace CRI.HitBoxTemplate.Example
 		private bool _lineMoving = true;
 		private bool _strikeTime = true;
 		private bool _started = false;
+		public int round = 0;
 
 		private void OnEnable()
 		{
@@ -41,6 +42,8 @@ namespace CRI.HitBoxTemplate.Example
 			if (!_started)
 			{
 				_started = true;
+				round++;
+				DataSaver.Instance.Separator("Round Start");
 				return;
 			}
 			if (Random.Range(0, 2) == 0)
@@ -64,6 +67,7 @@ namespace CRI.HitBoxTemplate.Example
 				_started = false;
 				_timeKeeper = 0f;
 				_timeSinceStrike = 0f;
+				DataSaver.Instance.Separator("Round Over");
 				return;
 			}
 			else if (_timeSinceStrike >= 3f)
