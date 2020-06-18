@@ -12,9 +12,17 @@ namespace CRI.HitBoxTemplate.Example
 		[SerializeField]
 		private Material _blue;
 		[SerializeField]
+		private float _speed0 = .5f;
 		private float _speed = .5f;
 		[SerializeField]
+		private float _randomSpeedFactor = .5f;
+		[SerializeField]
 		private float _maxAngle = 45f;
+		[SerializeField]
+		private float _delay2Hit0 = 3f;
+		[SerializeField]
+		private float _rangeDelay = 1f;
+		private float _delay2Hit = 3f;
 		public float currentAngle = 0f;
 		private int _direction = 1;
 		private float _timeKeeper = 0f;
@@ -37,6 +45,10 @@ namespace CRI.HitBoxTemplate.Example
 
 		private void OnImpact(object sender, ImpactPointControlEventArgs e)
 		{
+			SetImpact();
+		}
+
+		private void SetImpact() {
 			if (!_strikeTime || Time.realtimeSinceStartup < 2f) // waiting for the startup ghost hits to finish before registering any hit
 				return;
 			if (!_started)
@@ -52,6 +64,10 @@ namespace CRI.HitBoxTemplate.Example
 			_bar.GetComponent<MeshRenderer>().material = _blue;
 			_strikeTime = false;
 			reactionTime = _timeSinceStrike;
+
+			// Update delay 2 hits
+			_delay2Hit = _delay2Hit0 + Random.Range(-_rangeDelay / 2f, _rangeDelay / 2f);
+			_speed = _speed0 * Random.Range(1/_randomSpeedFactor, _randomSpeedFactor);
 		}
 
 		// Update is called once per frame
@@ -70,7 +86,7 @@ namespace CRI.HitBoxTemplate.Example
 				DataSaver.Instance.Separator("Round Over");
 				return;
 			}
-			else if (_timeSinceStrike >= 3f)
+			else if (_timeSinceStrike >= _delay2Hit)
 			{
 				_bar.GetComponent<MeshRenderer>().material = _red;
 				_lineMoving = false;
@@ -80,9 +96,13 @@ namespace CRI.HitBoxTemplate.Example
 			else if (_lineMoving)
 			{
 				float _xMax = 100f / 360f * _maxAngle;
-				if (transform.position.x > _xMax || transform.position.x < -_xMax)
+				if (transform.position.x > _xMax || transform.position.x < -_xMax || Input.GetKeyDown(KeyCode.Mouse0))
 					_direction = -_direction;
 				transform.Translate(_speed * _direction, 0, 0);
+			}
+
+			if (Input.GetMouseButtonUp(0)) {
+				SetImpact();
 			}
 		}
 	}
