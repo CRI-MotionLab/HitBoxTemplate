@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -152,7 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a004098f9db704845bb312dd074a1670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _players:
+  - {fileID: 1856428386}
+  - {fileID: 702422985}
   _nTargets: 3
+  _radius: 50
 --- !u!114 &60168206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,18 +171,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serialSettings:
-  - touchControlSerialPortName: 
-    ledControlSerialPortName: 
+  - touchControlSerialPortName: COM5
+    ledControlSerialPortName: COM3
     playerCamera: {fileID: 1856428387}
-    impactThreshold: 0
-    delayOffHit: 0
-    displayDatapoints: 0
-    ignoreBlackBackground: 0
-  - touchControlSerialPortName: 
-    ledControlSerialPortName: 
-    playerCamera: {fileID: 702422986}
-    impactThreshold: 0
-    delayOffHit: 0
+    impactThreshold: 5
+    delayOffHit: 2
     displayDatapoints: 0
     ignoreBlackBackground: 0
   _serialControllerPrefab: {fileID: 1333724754242966, guid: 3c6272710dc8ff64c914abfa898b6a6a,
@@ -295,6 +293,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -352,7 +351,8 @@ GameObject:
   - component: {fileID: 702422987}
   - component: {fileID: 702422986}
   - component: {fileID: 702422988}
-  m_Layer: 0
+  - component: {fileID: 702422989}
+  m_Layer: 10
   m_Name: Hitbox2_camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,6 +430,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetPrefab: {fileID: 5822917535474104146, guid: 92042a23e81310f4d90e50aab21ec374,
     type: 3}
+--- !u!114 &702422989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702422985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da87ab7177f10643b30f0bbb86f099a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerIndex: 1
+  _debugCamera: {fileID: 60168208}
+  _delayOffHit: 0.2
+  _impactPrefabs: {fileID: 7726583474970102550, guid: 6148b63e572b3a943b0842d9edb2428b,
+    type: 3}
 --- !u!1 &1267876512
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +493,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -533,7 +551,8 @@ GameObject:
   - component: {fileID: 1856428388}
   - component: {fileID: 1856428387}
   - component: {fileID: 1856428389}
-  m_Layer: 0
+  - component: {fileID: 1856428390}
+  m_Layer: 9
   m_Name: Hitbox1_camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,4 +629,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetPrefab: {fileID: 5822917535474104146, guid: 92042a23e81310f4d90e50aab21ec374,
+    type: 3}
+--- !u!114 &1856428390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856428386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da87ab7177f10643b30f0bbb86f099a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerIndex: 0
+  _debugCamera: {fileID: 60168208}
+  _delayOffHit: 0.2
+  _impactPrefabs: {fileID: 7726583474970102550, guid: 54d18d48182be7f47b058bdebdff2ad9,
     type: 3}

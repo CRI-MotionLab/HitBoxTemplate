@@ -4,12 +4,12 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-namespace Hitbox.Kombo
+namespace Hitbox.PingPong2X
 {
     public class ImpactManager : MonoBehaviour
     {
         [SerializeField]
-        private int _playerIndex = 0;
+        private int _playerIndex = 0; // set by PingPongManager
         private Camera _hitboxCamera;
         [SerializeField]
         private Camera _debugCamera;
@@ -20,6 +20,18 @@ namespace Hitbox.Kombo
 
         [SerializeField]
         private GameObject _impactPrefabs;
+
+		public int PlayerIndex
+		{
+			set
+			{
+				_playerIndex = value;
+			}
+			get
+			{
+				return _playerIndex;
+			}
+		}
 
         private void OnEnable()
         {
@@ -38,25 +50,30 @@ namespace Hitbox.Kombo
 
         private void OnHit(object sender, ImpactPointControlEventArgs e)
         {
-            // ----------- A CHECKER IF UTILE OU PAS -----------
-            if (Time.time - _timerOffHit0 > _delayOffHit)
-            {
-                SetImpact(e.impactPosition);
-                _timerOffHit0 = Time.time;
-            }
-            // -------------------------------------------------
+			if(e.playerIndex == this._playerIndex)
+			{
+				// ----------- A CHECKER IF UTILE OU PAS -----------
+				if (Time.time - _timerOffHit0 > _delayOffHit)
+				{
+					SetImpact(e.impactPosition);
+					_timerOffHit0 = Time.time;
+				}
+				// -------------------------------------------------
 
-            SetImpact(e.impactPosition);
+				SetImpact(e.impactPosition);
+			}
         }
 
         private void SetImpact(Vector2 position2D_)
         {
-            // Display a mark where impacts are detected
-            //Vector3 pos3DSprite_ = new Vector3(position2D_.x, position2D_.y, this.gameObject.transform.position.z + 100f); // set sprite in front of Hitbox camera
-            //Instantiate(_impactPrefabs, pos3DSprite_, Quaternion.identity, this.gameObject.transform);
+			// Display a mark where impacts are detected
+			Vector3 pos3DSprite_ = new Vector3(position2D_.x, position2D_.y, this.gameObject.transform.position.z + 100f);	// set sprite in front of Hitbox camera
+			GameObject prefab_ = Instantiate(_impactPrefabs, pos3DSprite_, Quaternion.identity, this.gameObject.transform);
+			prefab_.layer = this.gameObject.layer;
 
-            //this.gameObject.GetComponent<GameManager>().GetInteractPoint(position2D_); 
-        }
+			// Send impact
+			this.gameObject.GetComponent<TargetsManager>().SetImpact(position2D_);
+		}
 
 #if UNITY_EDITOR
         void OnMouseDown()

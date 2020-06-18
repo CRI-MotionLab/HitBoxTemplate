@@ -33,13 +33,6 @@ namespace Hitbox.PingPong2X
             set
             {
                 _state = value;
-                if (_state)
-                {
-                    _render.material.SetColor("_Color", _activeColor);
-                }
-                else {
-                    _render.material.SetColor("_Color", _inactiveColor);
-                }
             }
         }
 
@@ -57,7 +50,7 @@ namespace Hitbox.PingPong2X
 
         public void SetHit()
         {
-            // Trigger explose animation = instantiate impact explosion
+			// Trigger explose animation = instantiate impact explosion
             if (_hitFeedbackPrefab != null)
             {
                 var go = Instantiate(_hitFeedbackPrefab, this.transform.position, Quaternion.identity);
@@ -66,7 +59,19 @@ namespace Hitbox.PingPong2X
             State = !State;
         }
 
-        void OnBecameInvisible()
+		private void Update()
+		{
+			if (_state)
+			{
+				_render.material.SetColor("_Color", _activeColor);
+			}
+			else
+			{
+				_render.material.SetColor("_Color", _inactiveColor);
+			}
+		}
+
+		void OnBecameInvisible()
         {
             this.destroyTarget();
         }
