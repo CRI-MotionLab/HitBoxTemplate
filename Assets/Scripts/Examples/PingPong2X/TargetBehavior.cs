@@ -9,6 +9,7 @@ namespace Hitbox.PingPong2X
         private int _index = 0;
         private Renderer _render;
         private Color _color = Color.green;
+		private float _scale;
         
 
         [SerializeField]
@@ -41,6 +42,17 @@ namespace Hitbox.PingPong2X
 				_color = value;
 			}
 		}
+		
+		public float Scale
+		{
+			get {
+				return _scale;
+			}
+			set {
+				_scale = value;
+			}
+
+		}
 
         public void SetHit()
         {
@@ -55,6 +67,7 @@ namespace Hitbox.PingPong2X
 		private void Update()
 		{
 			_render.material.SetColor("_Color", _color);
+			this.transform.localScale = new Vector3(_scale, _scale, _scale);
 		}
 
 		void OnBecameInvisible()
