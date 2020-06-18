@@ -7,13 +7,8 @@ namespace Hitbox.PingPong2X
     public class TargetBehavior : MonoBehaviour
     {
         private int _index = 0;
-        private bool _state = false;
-
         private Renderer _render;
-        [SerializeField]
-        private Color _activeColor = Color.red;
-        [SerializeField]
-        private Color _inactiveColor = Color.blue;
+        private Color _color = Color.green;
         
 
         [SerializeField]
@@ -22,18 +17,6 @@ namespace Hitbox.PingPong2X
         void Awake()
         {
             _render = GetComponent<Renderer>();
-        }
-
-        public bool State
-        {
-            get
-            {
-                return _state;
-            }
-            set
-            {
-                _state = value;
-            }
         }
 
         public int Index
@@ -48,6 +31,17 @@ namespace Hitbox.PingPong2X
             }
         }
 
+		public Color TargetColor {
+			get
+			{
+				return _color;
+			}
+			set
+			{
+				_color = value;
+			}
+		}
+
         public void SetHit()
         {
 			// Trigger explose animation = instantiate impact explosion
@@ -56,19 +50,11 @@ namespace Hitbox.PingPong2X
                 var go = Instantiate(_hitFeedbackPrefab, this.transform.position, Quaternion.identity);
                 go.gameObject.layer = this.gameObject.layer;
             }
-            State = !State;
         }
 
 		private void Update()
 		{
-			if (_state)
-			{
-				_render.material.SetColor("_Color", _activeColor);
-			}
-			else
-			{
-				_render.material.SetColor("_Color", _inactiveColor);
-			}
+			_render.material.SetColor("_Color", _color);
 		}
 
 		void OnBecameInvisible()

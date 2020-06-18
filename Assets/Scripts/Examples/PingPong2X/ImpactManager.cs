@@ -8,7 +8,6 @@ namespace Hitbox.PingPong2X
 {
     public class ImpactManager : MonoBehaviour
     {
-        [SerializeField]
         private int _playerIndex = 0; // set by PingPongManager
         private Camera _hitboxCamera;
         [SerializeField]
@@ -50,7 +49,7 @@ namespace Hitbox.PingPong2X
 
         private void OnHit(object sender, ImpactPointControlEventArgs e)
         {
-			if(e.playerIndex == this._playerIndex)
+			if(e.playerIndex == this.PlayerIndex)
 			{
 				// ----------- A CHECKER IF UTILE OU PAS -----------
 				if (Time.time - _timerOffHit0 > _delayOffHit)

@@ -15,7 +15,7 @@ namespace Hitbox.PingPong2X
 			_targetsCollection = new List<GameObject>();
 		}
 
-		public void SetCrownTargets(int nTargets_, float radius_)
+		public void SetCrownTargets(int nTargets_, float radius_, Color color_)
         {
             for (int i = 0; i < nTargets_; i++)
             {
@@ -24,19 +24,21 @@ namespace Hitbox.PingPong2X
                 float posY_ = this.transform.position.y + radius_ * Mathf.Sin(angle_);
                 float posZ_ = this.transform.position.z + 50;
 
-                SetTarget(new Vector3(posX_, posY_, posZ_), i);
+                SetTarget(new Vector3(posX_, posY_, posZ_), i, color_);
             }
         }
 
-        private void SetTarget(Vector3 position_, int targetIndex_)
+        private void SetTarget(Vector3 position_, int targetIndex_, Color color_)
         {
 			// Instantiate target
 			GameObject newTarget_ = Instantiate(_targetPrefab, position_, Quaternion.identity, this.gameObject.transform);     // create target
 
 			// Manage new target
 			_targetsCollection.Add(newTarget_);
-			newTarget_.GetComponent<TargetBehavior>().Index = targetIndex_;	// set target index
-        }
+			newTarget_.GetComponent<TargetBehavior>().Index = targetIndex_; // set target index
+			newTarget_.GetComponent<TargetBehavior>().TargetColor = color_; // set target color
+			newTarget_.layer = this.gameObject.layer;
+		}
 
         public void SetImpact(Vector2 position2D_)
         {
@@ -46,27 +48,25 @@ namespace Hitbox.PingPong2X
 
 			/// Raycast target and action (specify layer)
 			RaycastHit hit;
-			if (Physics.Raycast(position2D_, cameraForward, out hit, 9999, this.gameObject.layer))
+			int layerMask_ = 1 << this.gameObject.layer;
+			if (Physics.Raycast(position2D_, cameraForward, out hit, Mathf.Infinity, layerMask_))
 			{
+				Debug.Log("ici " + this.gameObject.layer);
 				if (hit.collider != null && hit.transform.tag == "target")
 				{
 					int playerIndex_ = this.gameObject.GetComponent<ImpactManager>().PlayerIndex;			// get player index
 					int targetIndex_ = hit.collider.GetComponent<TargetBehavior>().Index;					// get target index
-					hit.collider.GetComponent<TargetBehavior>().SetHit();									// set hit to target
+					hit.collider.GetComponent<TargetBehavior>().SetHit();                                   // set hit to target
+
+					Debug.Log(playerIndex_);
 					transform.parent.GetComponent<PingPongManager>().SetHit(playerIndex_, targetIndex_) ;	// return hit to ping pong manager
 				}
 			}
         }
 
-		public void SetTarget(int targetIndex_)
+		public void SetTarget(int targetIndex_, Color color_)
 		{
-			Debug.Log(this.gameObject.GetComponent<ImpactManager>().PlayerIndex + " --> " + targetIndex_);
+			_targetsCollection[targetIndex_].GetComponent<TargetBehavior>().TargetColor = color_;
 		}
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
