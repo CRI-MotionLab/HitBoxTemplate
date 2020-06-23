@@ -158,8 +158,6 @@ MonoBehaviour:
     color: {r: 0, g: 0, b: 1, a: 0}
   - hitbox: {fileID: 702422985}
     color: {r: 0, g: 1, b: 0, a: 0}
-  - hitbox: {fileID: 1884631034}
-    color: {r: 1, g: 0, b: 0, a: 0}
   _nTargets: 5
   _crownRadius: 50
   _targetRadius: 50
@@ -176,9 +174,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serialSettings:
-  - touchControlSerialPortName: COM5
-    ledControlSerialPortName: COM3
+  - touchControlSerialPortName: COM6
+    ledControlSerialPortName: COM5
     playerCamera: {fileID: 1856428387}
+    impactThreshold: 3
+    delayOffHit: 2
+    displayDatapoints: 0
+    ignoreBlackBackground: 0
+  - touchControlSerialPortName: COM7
+    ledControlSerialPortName: COM8
+    playerCamera: {fileID: 702422986}
     impactThreshold: 3
     delayOffHit: 2
     displayDatapoints: 0
@@ -396,9 +401,9 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1335
+    m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 064590c855b066641a16a65c83632747, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: c8bad0e973a091a429ebc2eba5fbc4e4, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -595,7 +600,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 064590c855b066641a16a65c83632747, type: 2}
   m_TargetDisplay: 0
@@ -731,9 +736,9 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1335
+    m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 064590c855b066641a16a65c83632747, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: cd7f8d51e7b0fd34183205b7c48ccaa5, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
