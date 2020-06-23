@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1600,7 +1600,7 @@ Transform:
   m_GameObject: {fileID: 474311797}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.12, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.32, z: 0.12}
+  m_LocalScale: {x: 0.1, y: 0.12, z: 0.1}
   m_Children: []
   m_Father: {fileID: 631968369}
   m_RootOrder: 3
@@ -1694,7 +1694,7 @@ Transform:
   m_GameObject: {fileID: 492564965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: -0.12}
-  m_LocalScale: {x: 0.12, y: 0.32, z: 0.12}
+  m_LocalScale: {x: 0.1, y: 0.12, z: 0.1}
   m_Children: []
   m_Father: {fileID: 631968369}
   m_RootOrder: 0
@@ -2254,7 +2254,7 @@ Transform:
   m_GameObject: {fileID: 767334723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.12, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.32, z: 0.12}
+  m_LocalScale: {x: 0.1, y: 0.12, z: 0.1}
   m_Children: []
   m_Father: {fileID: 631968369}
   m_RootOrder: 2
@@ -2711,7 +2711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &887366792
 Transform:
   m_ObjectHideFlags: 0
@@ -2720,8 +2720,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887366791}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 176383735}
   - {fileID: 1547035833}
@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 4
+  index: 3
   origin: {fileID: 0}
 --- !u!65 &910950586
 BoxCollider:
@@ -3739,8 +3739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serialSettings:
-  - touchControlSerialPortName: COM5
-    ledControlSerialPortName: COM3
+  - touchControlSerialPortName: COM6
+    ledControlSerialPortName: COM5
     playerControlSerialPortName: 
     playerCamera: {fileID: 411570567}
     impactThreshold: 5
@@ -4465,7 +4465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1619314981
 Transform:
   m_ObjectHideFlags: 0
@@ -5711,7 +5711,7 @@ Transform:
   m_GameObject: {fileID: 2077287606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.12}
-  m_LocalScale: {x: 0.12, y: 0.32, z: 0.12}
+  m_LocalScale: {x: 0.1, y: 0.12, z: 0.1}
   m_Children: []
   m_Father: {fileID: 631968369}
   m_RootOrder: 1

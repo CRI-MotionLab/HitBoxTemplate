@@ -5,30 +5,26 @@ using UnityEngine;
 public class TargetMovingBar : MonoBehaviour
 {
 	public bool activated;
-	public int side;
+	public float side;
 	private Vector3 _pos;
 	private Vector3 _scale;
 
-	private void Start()
+	void FixedUpdate()
 	{
 		_pos = transform.position;
 		_scale = transform.localScale;
-	}
-
-	void Update()
-	{
-		if (activated == true && _scale.x != 53)
+		if (activated == true && _scale.x != 13)
 		{
-			_scale.x += 1;
+			_scale.x += .125f;
 			transform.localScale = _scale;
-			_pos.x += side / 2;
+			_pos.x += side / 4;
 			transform.position = _pos;
 		}
 		else if (activated == false && _scale.x != 3)
 		{
-			_scale.x -= 1;
+			_scale.x -= .125f;
 			transform.localScale = _scale;
-			_pos.x -= side / 2;
+			_pos.x -= side / 4;
 			transform.position = _pos;
 		}
 	}

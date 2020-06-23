@@ -72,7 +72,6 @@ namespace CRI.HitBoxTemplate.Example
 			if (!_started)
 				return;
 			_timeKeeper += Time.fixedDeltaTime;
-			_timeSinceStrike += Time.fixedDeltaTime;
 			if (_timeKeeper >= 180.0f)
 			{
 				_started = false;
@@ -103,6 +102,7 @@ namespace CRI.HitBoxTemplate.Example
 			}
 			else if (_lineMoving)
 			{
+				_timeSinceStrike += Time.fixedDeltaTime;
 				float _xMax = 100f / 360f * _maxAngle;
 				if (transform.position.x > _xMax || transform.position.x < -_xMax || Input.GetKeyDown(KeyCode.Mouse0))
 					_direction = -_direction;

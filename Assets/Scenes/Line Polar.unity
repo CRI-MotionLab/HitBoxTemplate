@@ -1708,7 +1708,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa43846beb49eb4eb700630cdc3196d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _serialSettings: []
+  _serialSettings:
+  - touchControlSerialPortName: COM6
+    ledControlSerialPortName: COM5
+    playerControlSerialPortName: 
+    playerCamera: {fileID: 446747832}
+    impactThreshold: 2
+    delayOffHit: 2
+    displayDatapoints: 0
+    ignoreBlackBackground: 1
   _serialControllerPrefab: {fileID: 1333724754242966, guid: 3c6272710dc8ff64c914abfa898b6a6a,
     type: 3}
 --- !u!4 &1262453705
@@ -3195,7 +3203,7 @@ MonoBehaviour:
   _blue: {fileID: 2100000, guid: d99df226adab5154f99fe42dac9b8b9f, type: 2}
   _speed0: 0.5
   _randomSpeedFactor: 1
-  _maxAngle: 200
+  _maxAngle: 180
   _delay2Hit0: 3
   _rangeDelay: 2
   currentAngle: 0
