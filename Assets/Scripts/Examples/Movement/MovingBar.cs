@@ -5,23 +5,17 @@ namespace CRI.HitBoxTemplate.Example
 {
 	public class MovingBar : MonoBehaviour
 	{
-		[SerializeField]
-		private GameObject _bar;
-		[SerializeField]
-		private Material _red;
-		[SerializeField]
-		private Material _blue;
-		[SerializeField]
-		private float _speed0 = .5f;
+		[SerializeField] private GameObject _barUp;
+		[SerializeField] private GameObject _barDown;
+		private GameObject _barUsed;
+		[SerializeField] private Material _red;
+		[SerializeField] private Material _blue;
+		[SerializeField] private float _speed0 = .5f;
 		private float _speed = .5f;
-		[SerializeField]
-		private float _randomSpeedFactor = .5f;
-		[SerializeField]
-		private float _maxAngle = 45f;
-		[SerializeField]
-		private float _delay2Hit0 = 3f;
-		[SerializeField]
-		private float _rangeDelay = 1f;
+		[SerializeField] private float _randomSpeedFactor = .5f;
+		[SerializeField] private float _maxAngle = 45f;
+		[SerializeField] private float _delay2Hit0 = 3f;
+		[SerializeField] private float _rangeDelay = 1f;
 		private float _delay2Hit = 3f;
 		public float currentAngle = 0f;
 		private int _direction = 1;
@@ -61,7 +55,8 @@ namespace CRI.HitBoxTemplate.Example
 			if (Random.Range(0, 2) == 0)
 				_direction = -_direction;
 			_lineMoving = true;
-			_bar.GetComponent<MeshRenderer>().material = _blue;
+			_barUsed.GetComponent<MeshRenderer>().material = _blue;
+			_barUsed.GetComponent<TargetMovingBar>().activated = false;
 			_strikeTime = false;
 			reactionTime = _timeSinceStrike;
 
@@ -88,7 +83,20 @@ namespace CRI.HitBoxTemplate.Example
 			}
 			else if (_timeSinceStrike >= _delay2Hit)
 			{
-				_bar.GetComponent<MeshRenderer>().material = _red;
+				if (Random.Range(0, 2) == 0)
+					_barUsed = _barUp;
+				else
+					_barUsed = _barDown;
+
+
+				_barUsed.GetComponent<MeshRenderer>().material = _red;
+				if (Random.Range(0, 2) == 0)
+					_barUsed.GetComponent<TargetMovingBar>().side = 1;
+				else
+					_barUsed.GetComponent<TargetMovingBar>().side = -1;
+				_barUsed.GetComponent<TargetMovingBar>().activated = true;
+
+
 				_lineMoving = false;
 				_timeSinceStrike = 0f;
 				_strikeTime = true;
@@ -101,8 +109,9 @@ namespace CRI.HitBoxTemplate.Example
 				transform.Translate(_speed * _direction, 0, 0);
 			}
 
-			if (Input.GetMouseButtonUp(0)) {
+			if (Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space)) {
 				SetImpact();
+				Debug.Log("Hi");
 			}
 		}
 	}
