@@ -158,6 +158,8 @@ MonoBehaviour:
     color: {r: 0, g: 0, b: 1, a: 0}
   - hitbox: {fileID: 702422985}
     color: {r: 0, g: 1, b: 0, a: 0}
+  - hitbox: {fileID: 1884631034}
+    color: {r: 1, g: 0, b: 0, a: 0}
   _nTargets: 5
   _crownRadius: 50
   _targetRadius: 50
@@ -174,16 +176,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serialSettings:
-  - touchControlSerialPortName: COM6
-    ledControlSerialPortName: COM5
+  - touchControlSerialPortName: COM8
+    ledControlSerialPortName: COM9
     playerCamera: {fileID: 1856428387}
     impactThreshold: 3
     delayOffHit: 2
     displayDatapoints: 0
     ignoreBlackBackground: 0
   - touchControlSerialPortName: COM7
-    ledControlSerialPortName: COM8
+    ledControlSerialPortName: COM6
     playerCamera: {fileID: 702422986}
+    impactThreshold: 3
+    delayOffHit: 2
+    displayDatapoints: 0
+    ignoreBlackBackground: 1
+  - touchControlSerialPortName: COM15
+    ledControlSerialPortName: COM14
+    playerCamera: {fileID: 1884631037}
     impactThreshold: 3
     delayOffHit: 2
     displayDatapoints: 0
