@@ -27,6 +27,9 @@ namespace CRI.HitBoxTemplate.Example
 		private bool _started = false;
 		public int round = 0;
 
+		[SerializeField]
+		private GameObject _hitFeedback;
+
 		private void OnEnable()
 		{
 			ImpactPointControl.onImpact += OnImpact;
@@ -39,6 +42,9 @@ namespace CRI.HitBoxTemplate.Example
 
 		private void OnImpact(object sender, ImpactPointControlEventArgs e)
 		{
+			if (_hitFeedback != null) {
+				Instantiate(_hitFeedback, new Vector3(e.impactPosition.x, e.impactPosition.y, 30), Quaternion.identity);
+			}
 			SetImpact();
 		}
 
